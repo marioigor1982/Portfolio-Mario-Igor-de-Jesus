@@ -35,7 +35,7 @@ const projects: Project[] = [
     imageUrl: 'https://i.postimg.cc/KjWSDHNX/capa-now-suggar.png',
     tags: ['React', 'TypeScript', 'Tailwind CSS'],
     liveUrl: 'https://now-suggar.vercel.app/',
-    repoUrl: '#',
+    repoUrl: 'https://github.com/marioigor1982/Now_Suggar',
   },
   {
     title: 'Ateliê Talyta Costa',
@@ -59,7 +59,7 @@ const projects: Project[] = [
     imageUrl: 'https://picsum.photos/seed/project4/600/400',
     tags: ['React', 'TypeScript', 'Tailwind CSS', 'Landing Page'],
     liveUrl: 'https://aqua-clean-car-wash.vercel.app/',
-    repoUrl: '#',
+    repoUrl: 'https://github.com/marioigor1982/aqua-clean-car-wash',
   },
 ];
 
@@ -229,7 +229,7 @@ const Projects: React.FC = () => {
           </div>
         )}
       </div>
-    </section>
+    </Section>
   );
 };
 
