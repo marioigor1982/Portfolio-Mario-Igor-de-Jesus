@@ -14,6 +14,14 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: 'Tapiocaria Delegusty',
+    description: 'Website para uma tapiocaria, com cardápio digital interativo, informações de contato e um design atraente focado na experiência do cliente.',
+    imageUrl: 'https://picsum.photos/seed/project-tapiocaria/600/400',
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
+    liveUrl: 'https://tapiocaria-delegusty.vercel.app/',
+    repoUrl: 'https://github.com/marioigor1982/Tapiocaria_Delegusty',
+  },
+  {
     title: 'Corretor Leandro',
     description: 'Landing page para um corretor de imóveis, com design profissional, focado na captação de leads e apresentação de imóveis.',
     imageUrl: 'https://picsum.photos/seed/project-corretor/600/400',
@@ -68,7 +76,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 
   const isLivePreview = 
     project.liveUrl && 
-    (project.title === 'Corretor Leandro' || project.title === 'Art em Movimento Academia' || project.title === 'Now Suggar Glicemia' || project.title === 'Ateliê Talyta Costa' || project.title === '7Play Connect' || project.title === 'Landing Page Lava rápido');
+    (project.title === 'Corretor Leandro' || project.title === 'Art em Movimento Academia' || project.title === 'Now Suggar Glicemia' || project.title === 'Ateliê Talyta Costa' || project.title === '7Play Connect' || project.title === 'Landing Page Lava rápido' || project.title === 'Tapiocaria Delegusty');
 
   return (
     <div className="bg-gray-800/50 rounded-lg overflow-hidden group transition-all duration-300 hover:shadow-2xl hover:shadow-sky-500/20 transform hover:-translate-y-2 h-full flex flex-col">
