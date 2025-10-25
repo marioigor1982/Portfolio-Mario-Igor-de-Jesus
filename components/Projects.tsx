@@ -66,8 +66,8 @@ const projects: Project[] = [
     description: 'Landing page para um lava rápido, com design moderno e focado na apresentação dos serviços e contato.',
     imageUrl: 'https://picsum.photos/seed/project4/600/400',
     tags: ['React', 'TypeScript', 'Tailwind CSS', 'Landing Page'],
-    liveUrl: 'https://aqua-clean-car-wash.vercel.app/',
-    repoUrl: 'https://github.com/marioigor1982/aqua-clean-car-wash',
+    liveUrl: 'https://aqua-clean-ten.vercel.app/',
+    repoUrl: 'https://github.com/marioigor1982/Aqua_Clean',
   },
 ];
 
