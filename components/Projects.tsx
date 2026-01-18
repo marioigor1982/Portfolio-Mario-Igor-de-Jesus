@@ -1,7 +1,7 @@
-// FIX: Corrected import statement to include useState, useEffect, and useCallback from React.
+
 import React, { useState, useEffect, useCallback } from 'react';
 import Section from './Section';
-import { ExternalLink, Github, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ExternalLink, Github, ChevronLeft, ChevronRight, Layout } from 'lucide-react';
 
 interface Project {
   title: string;
@@ -10,9 +10,35 @@ interface Project {
   tags: string[];
   liveUrl?: string;
   repoUrl: string;
+  isFeatured?: boolean;
 }
 
 const projects: Project[] = [
+  {
+    title: 'Sistema Sapien | CRM Imobiliário',
+    description: 'Um sistema CRM robusto e especializado para o mercado imobiliário. Atualmente em desenvolvimento, focado na gestão eficiente de leads, imóveis e automação de vendas.',
+    imageUrl: 'https://picsum.photos/seed/sapien/600/400',
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'CRM', 'Enterprise'],
+    liveUrl: 'https://sapien-crm-imobili-rio.vercel.app/',
+    repoUrl: 'https://vercel.com/mario-igor-de-jesus-projects?repo=https://github.com/marioigor1982/Sapien--CRM-Imobili-rio-',
+    isFeatured: true,
+  },
+  {
+    title: 'Climatek | Ar Condicionado',
+    description: 'Landing page profissional para serviços de instalação e manutenção de ar condicionado, com design focado em conversão e clareza na apresentação de serviços.',
+    imageUrl: 'https://picsum.photos/seed/climatek/600/400',
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+    liveUrl: 'https://climatek-instala-o-e-manuten-o-de-a.vercel.app/',
+    repoUrl: 'https://vercel.com/mario-igor-de-jesus-projects/climatek-instala-o-e-manuten-o-de-ar-condicionado/54pUPPVf2MJvWrLGVWN6FsjHhdB2',
+  },
+  {
+    title: 'GP Pintura',
+    description: 'Website institucional para prestação de serviços de pintura comercial e residencial, destacando o portfólio de acabamentos e facilidade de contato.',
+    imageUrl: 'https://picsum.photos/seed/gppintura/600/400',
+    tags: ['React', 'TypeScript', 'Tailwind CSS'],
+    liveUrl: 'https://gp-pintura.vercel.app/',
+    repoUrl: 'https://vercel.com/mario-igor-de-jesus-projects?repo=https://github.com/marioigor1982/GP---Pintura',
+  },
   {
     title: 'Tapiocaria Delegusty',
     description: 'Website para uma tapiocaria, com cardápio digital interativo, informações de contato e um design atraente focado na experiência do cliente.',
@@ -25,9 +51,9 @@ const projects: Project[] = [
     title: 'Corretor Leandro',
     description: 'Landing page para um corretor de imóveis, com design profissional, focado na captação de leads e apresentação de imóveis.',
     imageUrl: 'https://picsum.photos/seed/project-corretor/600/400',
-    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Landing Page'],
-    liveUrl: 'https://corretor-leandro.vercel.app/',
-    repoUrl: 'https://github.com/marioigor1982/Corretor_Leandro',
+    tags: ['React', 'TypeScript', 'Tailwind CSS', 'Real Estate'],
+    liveUrl: 'https://corretor-leco.vercel.app/',
+    repoUrl: 'https://vercel.com/mario-igor-de-jesus-projects?repo=https://github.com/marioigor1982/Corretor-Leco',
   },
   {
     title: 'Art em Movimento Academia',
@@ -74,13 +100,21 @@ const projects: Project[] = [
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const [isLoading, setIsLoading] = useState(true);
 
-  const isLivePreview = 
-    project.liveUrl && 
-    (project.title === 'Corretor Leandro' || project.title === 'Art em Movimento Academia' || project.title === 'Now Suggar Glicemia' || project.title === 'Ateliê Talyta Costa' || project.title === '7Play Connect' || project.title === 'Landing Page Lava rápido' || project.title === 'Tapiocaria Delegusty');
+  // Consider all Vercel links as live previews
+  const isLivePreview = project.liveUrl && (
+    project.liveUrl.includes('vercel.app') || 
+    project.liveUrl.includes('atelietalytacosta') || 
+    project.liveUrl.includes('7playconnect')
+  );
 
   return (
-    <div className="bg-gray-800/50 rounded-lg overflow-hidden group transition-all duration-300 hover:shadow-2xl hover:shadow-sky-500/20 transform hover:-translate-y-2 h-full flex flex-col">
+    <div className={`bg-gray-800/50 rounded-lg overflow-hidden group transition-all duration-300 hover:shadow-2xl hover:shadow-sky-500/20 transform hover:-translate-y-2 h-full flex flex-col border-2 ${project.isFeatured ? 'border-sky-500/40 shadow-lg shadow-sky-500/10' : 'border-transparent'}`}>
       <div className="relative overflow-hidden h-48 bg-gray-900">
+        {project.isFeatured && (
+          <div className="absolute top-2 right-2 z-20 bg-sky-500 text-white text-[10px] font-bold px-2 py-1 rounded-md shadow-lg flex items-center gap-1">
+             <Layout size={12} /> EM CONSTRUÇÃO
+          </div>
+        )}
         {isLivePreview ? (
           <>
             <div className="absolute inset-0 w-full h-full transform origin-top-left group-hover:scale-105 transition-transform duration-500" style={{ transform: 'scale(0.33)', transformOrigin: 'top left' }}>
@@ -108,7 +142,10 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
         )}
       </div>
       <div className="p-6 flex flex-col flex-grow">
-        <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
+        <div className="flex justify-between items-start mb-2">
+          <h3 className="text-xl font-bold text-white">{project.title}</h3>
+          {project.isFeatured && <span className="text-sky-400 font-bold text-xs">DESTAQUE</span>}
+        </div>
         <p className="text-gray-400 mb-4 text-sm flex-grow">{project.description}</p>
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map(tag => (
@@ -123,7 +160,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           )}
           {project.repoUrl && project.repoUrl !== '#' && (
             <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-sky-400 transition-colors duration-300 flex items-center gap-1">
-              <Github size={20} /> Código
+              <Github size={20} /> Projeto
             </a>
           )}
         </div>
